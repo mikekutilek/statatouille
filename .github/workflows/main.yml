@@ -1,0 +1,16 @@
+name: daily_refresh
+
+on:
+  schedule:
+  - cron: "0 16 * * *"
+
+jobs:
+  mlb_refresh:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Change Directory
+      run: cd ../../MLB
+    - name: Run MLB Daily
+      run: python refresh.py --daily
