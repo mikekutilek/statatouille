@@ -1,0 +1,42 @@
+image: "python:3.5"
+
+before_script:
+  - python --version
+
+stages:
+  - mlb_refresh
+  - nhl_refresh
+  - nfl_refresh
+
+sabr:
+  stage: mlb_refresh
+  only:
+    - schedules
+  tags:
+    - gitlab-org
+  script:
+    - pip install -r requirements.txt
+    - cd MLB
+    - python refresh.py --daily
+
+corsica:
+  stage: nhl_refresh
+  only:
+    - schedules
+  tags:
+    - gitlab-org
+  script:
+    - pip install -r requirements.txt
+    - cd NHL
+    - python refresh.py
+
+wopr:
+  stage: nfl_refresh
+  only:
+    - schedules
+  tags:
+    - gitlab-org
+  script:
+    - pip install -r requirements.txt
+    - cd NFL
+    - python refresh.py

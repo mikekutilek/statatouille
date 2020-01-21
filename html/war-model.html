@@ -1,0 +1,30 @@
+<div id="fp-app" ng-controller="ctrl">
+	<h3 class="block-title">Does Pitching Win Championships?</h3>
+	<div>
+		A common mantra in professional sports: <b>Defense</b> (or in baseball's case, Pitching) <b>Wins Championships.</b> It's been screamed from many a rooftop that a good defense paves the way for a good offense and that is the answer to this particular chicken and the egg problem. I'm here to attempt to disprove this sentiment, or at least propose an alternate theory: that offense is in fact the most invaluable component to a Major League Baseball team. Let's dive in.
+		<br><br>
+		I first pulled team by team WAR (<b>Wins Above Replacement</b>, the primary way to measure player value in MLB) rankings from <b>Fangraphs</b> (so, fWAR) from 1903 to present day, split between Pitchers (pWAR) and Position Players (bWAR). (Note that in Fangraphs version of WAR, Position Player WAR encombasses Offense and Defense, so splitting these out of position players will be the next step in this model) Next, I pulled a list of World Series Champions from <b>Baseball Reference</b> and joined it up with the initial dataset to be able to get the WAR ranking from the team that won the WS that year. From this final dataset, I graphed histograms of the number of championships won by each WAR rank. I created 3 histograms, one for pitchers, position players, and the entire team. 
+		<br><br>
+		<img width=100% src="/projects/SABR/graphs/fwar_ranks_hist.png" id="graph" />
+		<br><br>
+		<b>Main takeaways: </b>Let's start with pitching. It's clearly important, <b>92%</b> of champions have at least an above average pitching staff and <b>49%</b> have finished within the Top 5 of the league. This is pretty substantial! Your pitching staff needs to be above average at a minimum to have a decent chance to win, however if it's not elite, you've still got a chance. When we take a look at position player WAR, we see that having elite talent is a near necessity. <b>73%</b> of all World Series Champions have had a top 5 position player group and <b>32%</b> have had THE best group. It makes sense that position player WAR is more correlated to winning, since it encompasses hitting AND fielding, however it is interesting how critical being elite in this category is. 
+		<br><br>
+		But that's just 1 source of WAR, which can be calculated in a variety of ways. Let's check on <b>Baseball Prospectus'</b> version of the stat, WARP (<b>Wins Above Replacement Player</b>).
+		<br><br>
+		<img width=100% src="/projects/SABR/graphs/warp_ranks_hist.png" id="graph" />
+		<br><br>
+		Interesting! We see a similar battern in BWARP (for position players), but PWARP (pitcher WAR) is even more evenly distributed, with an even greater percentage of teams finishing in the 5-10 range than the truly elite 1-5, implying even less of a direct correlation to success. 
+		<br><br>
+		From this data, it's clear that Pitching alone does not win championships. It's also clear that it's certainly not the most important piece to winning one, either. I think we can check that off as yet another old fashioned saying that can be put to rest. 
+		<br/><br/>All data provided by <a target="_blank" href="https://www.baseball-reference.com/">Baseball Reference</a>, <a target="_blank" href="https://www.baseballprospectus.com/">Baseball Prospectus</a> and <a target="_blank" href="https://www.fangraphs.com/">Fangraphs</a></p>
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+    $( "#graph" ).on('load', function() { 
+        var mydiv = $(this).contents().find("div");
+        var h = mydiv.height();
+        $(this).height(h);
+    });
+});
+</script>

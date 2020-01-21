@@ -1,0 +1,68 @@
+<div id="opener-app" ng-controller="opener-ctrl">
+	<h3 class="block-title">The Opener Tool</h3>
+	<div class="col-sm-4">
+		<p>In May of 2018, the Tampa Bay Rays debuted a strategy known as <a target="_blank" href="https://www.mlb.com/news/who-will-follow-romo-to-be-the-next-opener/c-277690164">The Opener</a> by deploying a relief pitcher to pitch the first inning before going to the regularly scheduled starter. Following this start, the question became not if it would be tried again, but who would be the next to do so? This tool should help with figuring that out. <br/><br/>So, what is the making for a good Opener candidate? Basically, we are looking for starting pitchers who struggle often in the 1st inning to be replaced by a quality reliever on the same team. This tool attempts to find relief pitcher candidates with a <a target="_blank" href="https://www.fangraphs.com/library/offense/woba/">wOBA</a> less than 0.250 and starting pitcher candidates with a 1st inning <a target="_blank" href="https://www.fangraphs.com/library/offense/woba/">wOBA</a> greater than 0.350. The Opener Tool allows for filtering on team and opposing lineup handedness. <br/><br/>All data provided by <a target="_blank" href="https://baseballsavant.mlb.com/">Baseball Savant</a> and <a target="_blank" href="https://www.fangraphs.com/">Fangraphs</a></p>
+	</div>
+	<div class="center col-sm-8">
+		<div class="row span-padded teams-select">
+			<span class="span-select">Team:</span><select style="padding: 7px" ng-options="team for team in teams" ng-model="teamSelect" ng-change="getCandidates(teamSelect)"><option value="" selected="selected">All</option></select>
+			<span ng-if="loading"><img class="loading" src="/img/icons/loading.gif" ></span>
+		</div>
+		<div class="row">
+			<span ng-if="desc">The {{teamName}} {{chunk}}</span>
+		</div>
+		
+		<div class="row">
+			<h3>vs. RH Heavy Lineups</h3>
+			<div class="col-sm-5">
+				<div class="black-box">
+					<span style="font-size: 1em">RP Candidates</span>
+					<table class='center o-table' ng-if="tbl">
+						<tr><th>Name</th><th>wOBA</th></tr>
+						<tr ng-repeat="rrp in rrps">
+							<td>{{rrp.name}}</td><td>{{rrp.wOBA}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<div class="black-box">
+					<span style="font-size: 1em">SP Candidates</span>
+					<table class='center o-table' ng-if="tbl">
+						<tr><th>Name</th><th>1st Inning wOBA</th></tr>
+						<tr ng-repeat="rsp in rsps">
+							<td>{{rsp.name}}</td><td>{{rsp.wOBA}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h3>vs. LH Heavy Lineups</h3>
+			<div class="col-sm-5">
+				<div class="black-box">
+					<span style="font-size: 1em">RP Candidates</span>
+					<table class='center o-table' ng-if="tbl">
+						<tr><th>Name</th><th>wOBA</th></tr>
+						<tr ng-repeat="lrp in lrps">
+							<td>{{lrp.name}}</td><td>{{lrp.wOBA}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<div class="col-sm-7">
+				<div class="black-box">
+					<span style="font-size: 1em">SP Candidates</span>
+					<table class='center o-table' ng-if="tbl">
+						<tr><th>Name</th><th>1st Inning wOBA</th></tr>
+						<tr ng-repeat="lsp in lsps">
+							<td>{{lsp.name}}</td><td>{{lsp.wOBA}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/opener.js"></script>

@@ -1,0 +1,70 @@
+<div id="fp-app" ng-controller="fp-ctrl">
+	<h3 class="block-title">Fantasy Points Tool</h3>
+	<div class="col-sm-4">
+		<p>Gaining popularity every day, fantasy sports have become a staple of the sports gambling industry. Sports betting is spreading across casinos throughout the country and apps like DraftKings and FanDuel are increasingly popular. Everyone is looking for an edge in these games to earn themselves a shot at millions. Fortunately, we can utilize the data at our fingertips to gain this edge.<br><br>This tool is designed to give fantasy players a better way to manage their teams. Instead of looking at boxscores and back of the baseball card statistics like touchdowns, goals, pitcher wins, etc., we should be looking at rate statistics, trends, and opportunity. The tool looks at the most important underlying statistics for each league and compares it to the fantasy points for that player. The idea is to project future performance and identify buy low candidates and smart waiver wire pickups in your league. <br/><br/>All data provided by <a href="https://www.hockey-reference.com/">Hockey Reference</a>, <a href="https://www.pro-football-reference.com/">Pro Football Reference</a>, <a target="_blank" href="https://airyards.com/">AirYards.com</a>, <a target="_blank" href="https://baseballsavant.mlb.com/">Baseball Savant</a>, <a target="_blank" href="https://www.baseball-reference.com/">Baseball Reference</a>, and <a target="_blank" href="https://www.fangraphs.com/">Fangraphs</a></p>
+	</div>
+	<div class="center col-sm-8 flex-container">
+		<div class="filters">
+			<ul id="sport-filters">
+				<li data-filter=".nhl" class="nhl active">NHL</li>
+				<li data-filter=".nfl" class="nfl">NFL</li>
+				<li data-filter=".mlb" class="mlb">MLB</li>
+			</ul>
+		</div>
+		<div class="secondary-filters">
+			<div class="filters secondary nhl-options showx">
+				<ul id="filters">
+					<li class="skater active">Skater</li>
+					<li class="goalie">Goalie</li>
+				</ul>
+			</div>
+			
+			<div class="filters secondary nfl-options hidex">
+				<ul id="filters">
+					<li class="qb active">QB</li>
+					<li class="rb">RB</li>
+					<li class="wr">WR</li>
+					<li class="te">TE</li>
+					<li class="flex">FLEX</li>
+				</ul>
+			</div>
+			<div class="filters secondary mlb-options hidex">
+				<ul id="filters">
+					<li class="batter active">Batter</li>
+					<li class="pitcher">Pitcher</li>
+				</ul>
+
+			</div>
+		</div>
+		<div>
+			<span ng-if="loading"><img class="loading" src="/img/icons/loading.gif" ></span>
+		</div>
+		<div class="table-container" ng-style="{height: hgt+ 'px'}" ng-view>
+			<table id="fpTable" class='center o-table fp-table nhl-stats showx'>
+				<tr><th>Name</th><th id="fp" class="sortable">FP</th><th id="fpgnhl" class="sortable sorted">FP/G</th></tr>
+				<tr ng-repeat="player in players">
+					<td>{{player.Player}}</td><td>{{player.FP}}</td><td class="sorted">{{player['FPG']}}</td>
+				</tr>
+			</table>
+			<table id="fpTable" class='center o-table fp-table nfl-stats hidex'>
+				<tr><th>Name</th><th id="fp" class="sortable">FP</th><th id="fpgnfl" class="sortable sorted">FP/G</th><th id="wo" class="sortable">WO</th><th id="wog" class="sortable">WO/G</th><th id="wopr" class="sortable">WOPR</th><th id="woprg" class="sortable">WOPR/G</th></tr>
+				<tr ng-repeat="player in players">
+					<td>{{player.Player}}</td><td>{{player.FP}}</td><td>{{player['FPG']}}</td><td>{{player.WO}}</td><td>{{player['WOG']}}</td><td>{{player.WOPR}}</td><td>{{player['WOPRG']}}</td>
+				</tr>
+			</table>
+			<table id="fpTable" class='center o-table fp-table mlb-stats hidex'>
+				<tr><th>Name</th><th id="fp" class="sortable">FP</th><th id="fpgmlb" class="sortable sorted">FP/G</th></tr>
+				<tr ng-repeat="player in players">
+					<td>{{player.Player}}</td><td>{{player.FP}}</td><td class="sorted">{{player['FPG']}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="pagination center">
+			<a ng-click="gotoPrev(pages, df)" ng-href="">&laquo;</a>
+			<a ng-repeat="page in pages" ng-href="{{page.link}}" ng-click="gotoPage($event, df)" ng-class="{active: page.isActive}">{{page.label}}</a>
+			<a ng-click="gotoNext(pages, df)" ng-href="">&raquo;</a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/fp.js"></script>
+<script type="text/javascript" src="js/main.js"></script>

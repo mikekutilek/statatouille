@@ -1,0 +1,17 @@
+<div id="fp-app" ng-controller="ctrl">
+	<h3 class="block-title">MLB Team by Team Visuals</h3>
+	<div>
+		This page will be utilized to display various graphs and visualizations for team by team MLB statistics. The first one displayed below is a look at two of <a target="_blank" href="https://www.baseballprospectus.com/">Baseball Prospectus'</a> most important stats: <b>DRC+</b> and <b>DRA-</b>. DRC+ is an offensive stat that measures a hitters' contribution to the offense. Likewise, DRA- is a pitching stat that measures the number of runs a pitcher deserved to give up. <br><br>This graph charts DRC+ on the x-axis and DRA- on the y-axis to give you a look at where teams are excelling in the hitting or pitching department. As you can see in the 2019 view below, the <b>Astros</b> and <b>Dodgers</b> are flying ahead of the pack, while teams like the <b>Nationals</b> and <b>Braves</b> try to keep up. One-sided teams such as the <b>Twins</b>, <b>Yankees</b>, and <b>Red Sox</b> all have powerhouse offenses with average pitching staffs. You can read more about DRC+ <a target="_blank" href="https://www.baseballprospectus.com/drc-deserved-runs-created/">here</a> and DRA- <a target="_blank" href="https://www.baseballprospectus.com/dra-deserved-run-average/">here</a>.
+		<img width=100% src="/projects/SABR/graphs/drc_vs_dra.png" id="graph" />
+		<br/><br/>All data provided by <a target="_blank" href="https://www.baseballprospectus.com/">Baseball Prospectus</a></p>
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+    $( "#graph" ).on('load', function() { 
+        var mydiv = $(this).contents().find("div");
+        var h = mydiv.height();
+        $(this).height(h);
+    });
+});
+</script>
