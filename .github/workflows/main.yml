@@ -1,8 +1,9 @@
 name: daily_refresh
 
 on:
-  schedule:
-  - cron: "0 16 * * *"
+  push:
+    branches: 
+      - master
 
 jobs:
   mlb_refresh:
