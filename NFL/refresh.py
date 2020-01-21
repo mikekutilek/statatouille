@@ -53,7 +53,7 @@ def load_fp():
 	insert_to_table('fp', te_df)
 
 def main():
-	load_air_yards()
+	#load_air_yards()
 	load_pfr_rushing()
 	load_pfr_fantasy()
 	load_pfr_scoring()

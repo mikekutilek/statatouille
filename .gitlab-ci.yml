@@ -8,7 +8,7 @@ stages:
   - nhl_refresh
   - nfl_refresh
 
-sabr:
+MLB Daily:
   stage: mlb_refresh
   only:
     - schedules
@@ -19,7 +19,7 @@ sabr:
     - cd MLB
     - python refresh.py --daily
 
-corsica:
+NHL Daily:
   stage: nhl_refresh
   only:
     - schedules
@@ -30,7 +30,7 @@ corsica:
     - cd NHL
     - python refresh.py
 
-wopr:
+NFL Daily:
   stage: nfl_refresh
   only:
     - schedules
