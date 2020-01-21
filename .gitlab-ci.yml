@@ -6,7 +6,6 @@ before_script:
 stages:
   - mlb_refresh
   - nhl_refresh
-  - nfl_refresh
 
 MLB Daily:
   stage: mlb_refresh
