@@ -27,4 +27,4 @@ NHL Daily:
   script:
     - pip install -r requirements.txt
     - cd NHL
-    - python refresh.py 
+    - python refresh.py
