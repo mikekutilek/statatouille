@@ -12,6 +12,9 @@ jobs:
 
     steps:
     - name: Change Directory
-      run: cd ../../MLB
+      run: |
+        ls -al
+        pwd
+        cd ../../MLB
     - name: Run MLB Daily
       run: python refresh.py --daily
