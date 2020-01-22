@@ -37,7 +37,7 @@ def insert_to_table(db_name, table_name, df):
 def load_teams():
 	df = json.load(open("data/teams.json"))
 	client = conn()
-	db = client['SABR']
+	db = client['MLB_TEAM']
 	table = db['teams']
 	table.drop()
 	table.insert(df)
@@ -54,31 +54,31 @@ def load_team_historical(source, season_range):
 def load_active_pitchers():
 	active_df = fg.get_all_pitchers()
 	df = hist.teamname_to_abbr(active_df)
-	refresh_table('SABR', 'fg_pitchers_active', df)
+	refresh_table('MLB_PLAYER', 'fg_pitchers_active', df)
 
 def load_bref_team_sp():
 	url = "https://www.baseball-reference.com/leagues/MLB/{}-starter-pitching.shtml".format(CUR_SEASON)
 	page = bref.get_page(url)
 	df = bref.build_df(bref.get_table_by_class(page, 'stats_table'), 0, ['Tm'], ['']).sort_values(by=['RA/G'])
-	refresh_table('SABR', 'bref_team_sp', df)
+	refresh_table('MLB_TEAM', 'bref_team_sp', df)
 
 def load_batter_fp():
 	df = fp.get_all_batter_fps()
-	refresh_table('SABR', 'batter_fp', df)
+	refresh_table('MLB_PLAYER', 'fp_batter', df)
 
 def load_pitcher_fp():
 	df = fp.get_all_pitcher_fps()
-	refresh_table('SABR', 'pitcher_fp', df)
+	refresh_table('MLB_PLAYER', 'fp_pitcher', df)
 
 def load_opener_candidates():
 	rrp_df = op.get_all_candidates('R', 'RP')
 	lrp_df = op.get_all_candidates('L', 'RP')
 	rsp_df = op.get_all_candidates('R', 'SP')
 	lsp_df = op.get_all_candidates('L', 'SP')
-	refresh_table('SABR', 'opener_candidates', rrp_df)
-	insert_to_table('SABR', 'opener_candidates', lrp_df)
-	insert_to_table('SABR', 'opener_candidates', rsp_df)
-	insert_to_table('SABR', 'opener_candidates', lsp_df)
+	refresh_table('MLB_PLAYER', 'opener_candidates', rrp_df)
+	insert_to_table('MLB_PLAYER', 'opener_candidates', lrp_df)
+	insert_to_table('MLB_PLAYER', 'opener_candidates', rsp_df)
+	insert_to_table('MLB_PLAYER', 'opener_candidates', lsp_df)
 
 def load_daily_graphs():
 	df = ext.load_table('MLB_TEAM_HISTORICAL', 'bp_team_warp_'+CUR_SEASON)

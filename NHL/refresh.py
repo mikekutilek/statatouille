@@ -8,10 +8,10 @@ import pymongo #pymongo-3.7.2
 def conn():
 	return pymongo.MongoClient("mongodb+srv://admin:pdometer@mongo-uwij2.mongodb.net/test?retryWrites=true")
 
-def refresh_table(table_name, df):
+def refresh_table(db_name, table_name, df):
 	data_json = df.to_json(orient='records')
 	client = conn()
-	db = client['Corsica']
+	db = client[db_name]
 	table = db[table_name]
 	table.drop()
 	table.insert(json.loads(data_json))
@@ -19,25 +19,25 @@ def refresh_table(table_name, df):
 def load_skater_basic():
 	page = hr.get_all_skaters_page()
 	df = hr.get_table(page)
-	refresh_table('skater_basic', df)
+	refresh_table('NHL_PLAYER', 'skater_basic', df)
 
 def load_skater_advanced():
 	page = hr.get_advanced_skaters_page()
 	df = hr.get_table(page)
-	refresh_table('skater_advanced', df)
+	refresh_table('NHL_PLAYER', 'skater_advanced', df)
 
 def load_skater_fp():
 	df = fp.get_all_skater_fps()
-	refresh_table('skater_fp', df)
+	refresh_table('NHL_PLAYER', 'skater_fp', df)
 
 def load_goalie_basic():
 	page = hr.get_all_goalies_page()
 	df = hr.get_table(page)
-	refresh_table('goalie_basic', df)
+	refresh_table('NHL_PLAYER', 'goalie_basic', df)
 
 def load_goalie_fp():
 	df = fp.get_all_goalie_fps()
-	refresh_table('goalie_fp', df)
+	refresh_table('NHL_PLAYER', 'goalie_fp', df)
 
 def main():
 	load_skater_basic()
