@@ -53,7 +53,7 @@ def build_df(table, table_index, strings, ints):
 
 def abbr_to_master(df, season):
 	client = conn()
-	db = client['SABR']
+	db = client['MLB_TEAM']
 	table = db['teams']
 	abbr_df = pd.DataFrame()
 	abbr_df['Team'] = df['Tm']

@@ -31,7 +31,7 @@ def get_sps_wOBA_vs(batter_stands):
 def get_all_candidates(batter_stands, position):
 	#fg_df = fg.get_all_pitchers()
 	#df = hist.teamname_to_abbr(fg_df)
-	df = ext.load_table('SABR', 'fg_pitchers_active')
+	df = ext.load_table('MLB_PLAYER', 'fg_pitchers_active')
 	#print(abbr_df)
 	if position == 'RP':
 		data = get_rps_wOBA_vs(batter_stands)

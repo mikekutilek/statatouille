@@ -96,7 +96,7 @@ def teamname_to_abbr(df):
 	This method takes a dataframe of teams and matches each team's name against a given Team Abbreviation Type stored in MongoDB
 	"""
 	client = conn()
-	db = client['SABR']
+	db = client['MLB_TEAM']
 	table = db['teams']
 
 	team_abbrs = []

@@ -146,7 +146,7 @@ def plot_drc_vs_dra(df):
 	dra = list(df['DRA-'])
 	fp = FontProperties(fname="fonts/bbclub.otf")
 	for i, team in enumerate(teams):
-		team_entry = ext.load_table('SABR', 'teams', { 'master_abbr' : team })
+		team_entry = ext.load_table('MLB_TEAM', 'teams', { 'master_abbr' : team })
 		font_letter = team_entry['font_letter'][0]
 		ax.annotate(font_letter, [drc[i], dra[i]], clip_on=True, fontproperties=fp, fontsize=25)
 	plt.savefig('graphs/drc_vs_dra.png')
