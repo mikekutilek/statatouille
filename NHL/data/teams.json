@@ -1,0 +1,374 @@
+[
+	{
+		"team": ["Ducks"],
+		"full_name": ["Anaheim Ducks"],
+		"master_abbr": "ANA",
+		"abbrs": [
+			{
+				"covers": "ANA",
+				"hr": ["ANA"],
+				"nst": ["ANA"]
+			}
+		]
+	},
+	{
+		"team": ["Coyotes"],
+		"full_name": ["Arizona Coyotes", "Phoenix Coyotes"],
+		"master_abbr": "ARI",
+		"abbrs": [
+			{
+				"covers": "ARI",
+				"hr": ["PHX"], 
+				"nst": ["ARI"]
+			}
+		]
+	},
+	{
+		"team": ["Bruins"],
+		"full_name": ["Boston Bruins"],
+		"master_abbr": "BOS",
+		"abbrs": [
+			{
+				"covers": "BOS",
+				"hr": ["BOS"],
+				"nst": ["BOS"]
+			}
+		]
+	},
+	{
+		"team": ["Sabres"],
+		"full_name": ["Buffalo Sabres"],
+		"master_abbr": "BUF",
+		"abbrs": [
+			{
+				"covers": "BUF",
+				"hr": ["BUF"],
+				"nst": ["BUF"]
+			}
+		]
+	},
+	{
+		"team": ["Flames"],
+		"full_name": ["Calgary Flames"],
+		"master_abbr": "CGY",
+		"abbrs": [
+			{
+				"covers": "CAL",
+				"hr": ["CGY"],
+				"nst": ["CGY"]
+			}
+		]
+	},
+	{
+		"team": ["Hurricanes"],
+		"full_name": ["Carolina Hurricanes"],
+		"master_abbr": "CAR",
+		"abbrs": [
+			{
+				"covers": "CAR",
+				"hr": ["CAR"],
+				"nst": ["CAR"]
+			}
+		]
+	},
+	{
+		"team": ["Blackhawks"],
+		"full_name": ["Chicago Blackhawks"],
+		"master_abbr": "CHI",
+		"abbrs": [
+			{
+				"covers": "CHI",
+				"hr": ["CHI"],
+				"nst": ["CHI"]
+			}
+		]
+	},
+	{
+		"team": ["Avalanche"],
+		"full_name": ["Colorado Avalanche"],
+		"master_abbr": "COL",
+		"abbrs": [
+			{
+				"covers": "COL",
+				"hr": ["COL"],
+				"nst": ["COL"]
+			}
+		]
+	},
+	{
+		"team": ["Blue Jackets"],
+		"full_name": ["Columbus Blue Jackets"],
+		"master_abbr": "CBJ",
+		"abbrs": [
+			{
+				"covers": "CLB",
+				"hr": ["CBJ"],
+				"nst": ["CBJ"]
+			}
+		]
+	},
+	{
+		"team": ["Stars"],
+		"full_name": ["Dallas Stars"],
+		"master_abbr": "DAL",
+		"abbrs": [
+			{
+				"covers": "DAL",
+				"hr": ["DAL"],
+				"nst": ["DAL"]
+			}
+		]
+	},
+	{
+		"team": ["Red Wings"],
+		"full_name": ["Detroit Red Wings"],
+		"master_abbr": "DET",
+		"abbrs": [
+			{
+				"covers": "DET",
+				"hr": ["DET"],
+				"nst": ["DET"]
+			}
+		]
+	},
+	{
+		"team": ["Oilers"],
+		"full_name": ["Edmonton Oilers"],
+		"master_abbr": "EDM",
+		"abbrs": [
+			{
+				"covers": "EDM",
+				"hr": ["EDM"],
+				"nst": ["EDM"]
+			}
+		]
+	},
+	{
+		"team": ["Panthers"],
+		"full_name": ["Florida Panthers"],
+		"master_abbr": "LAA",
+		"abbrs": [
+			{
+				"covers": "FLA",
+				"hr": ["FLA"],
+				"nst": ["FLA"]
+			}
+		]
+	},
+	{
+		"team": ["Kings"],
+		"full_name": ["Los Angeles Kings"],
+		"master_abbr": "LAK",
+		"abbrs": [
+			{
+				"covers": "LA",
+				"hr": ["LAK"],
+				"nst": ["L.A"]
+			}
+		]
+	},
+	{
+		"team": ["Wild"],
+		"full_name": ["Minnesota Wild"],
+		"master_abbr": "MIN",
+		"abbrs": [
+			{
+				"covers": "MIN",
+				"hr": ["MIN"],
+				"nst": ["MIN"]
+			}
+		]
+	},
+	{
+		"team": ["Canadiens"],
+		"full_name": ["Montreal Canadiens"],
+		"master_abbr": "MTL",
+		"abbrs": [
+			{
+				"covers": "MON",
+				"hr": ["MTL"],
+				"nst": ["MTL"]
+			}
+		]
+	},
+	{
+		"team": ["Predators"],
+		"full_name": ["Nashville Predators"],
+		"master_abbr": "NSH",
+		"abbrs": [
+			{
+				"covers": "NAS",
+				"hr": ["NSH"],
+				"nst": ["NSH"]
+			}
+		]
+	},
+	{
+		"team": ["Devils"],
+		"full_name": ["New Jersey Devils"],
+		"master_abbr": "NJD",
+		"abbrs": [
+			{
+				"covers": "NJ",
+				"hr": ["NJD"],
+				"nst": ["N.J"]
+			}
+		]
+	},
+	{
+		"team": ["Islanders"],
+		"full_name": ["New York Islanders"],
+		"master_abbr": "NYI",
+		"abbrs": [
+			{
+				"covers": "NYI",
+				"hr": ["NYI"],
+				"nst": ["NYI"]
+			}
+		]
+	},
+	{
+		"team": ["Rangers"],
+		"full_name": ["New York Rangers"],
+		"master_abbr": "NYR",
+		"abbrs": [
+			{
+				"covers": "NYR",
+				"hr": ["NYR"],
+				"nst": ["NYR"]
+			}
+		]
+	},
+	{
+		"team": ["Senators"],
+		"full_name": ["Ottawa Senators"],
+		"master_abbr": "OTT",
+		"abbrs": [
+			{
+				"covers": "OTT",
+				"hr": ["OTT"],
+				"nst": ["OTT"]
+			}
+		]
+	},
+	{
+		"team": ["Flyers"],
+		"full_name": ["Philadelphia Flyers"],
+		"master_abbr": "PHI",
+		"abbrs": [
+			{
+				"covers": "PHI",
+				"hr": ["PHI"],
+				"nst": ["PHI"]
+			}
+		]
+	},
+	{
+		"team": ["Penguins"],
+		"full_name": ["Pittsburgh Penguins"],
+		"master_abbr": "PIT",
+		"abbrs": [
+			{
+				"covers": "PIT",
+				"hr": ["PIT"],
+				"nst": ["PIT"]
+			}
+		]
+	},
+	{
+		"team": ["Sharks"],
+		"full_name": ["San Jose Sharks"],
+		"master_abbr": "SJS",
+		"abbrs": [
+			{
+				"covers": "SJ",
+				"hr": ["SJS"],
+				"nst": ["S.J"]
+			}
+		]
+	},
+	{
+		"team": ["Blues"],
+		"full_name": ["St Louis Blues"],
+		"master_abbr": "STL",
+		"abbrs": [
+			{
+				"covers": "STL",
+				"hr": ["STL"],
+				"nst": ["STL"]
+			}
+		]
+	},
+	{
+		"team": ["Lightning"],
+		"full_name": ["Tampa Bay Lightning"],
+		"master_abbr": "TBL",
+		"abbrs": [
+			{
+				"covers": "TB",
+				"hr": ["TBL"],
+				"nst": ["T.B"]
+			}
+		]
+	},
+	{
+		"team": ["Maple Leafs"],
+		"full_name": ["Toronto Maple Leafs"],
+		"master_abbr": "TOR",
+		"abbrs": [
+			{
+				"covers": "TOR",
+				"hr": ["TOR"],
+				"nst": ["TOR"]
+			}
+		]
+	},
+	{
+		"team": ["Canucks"],
+		"full_name": ["Vancouver Canucks"],
+		"master_abbr": "VAN",
+		"abbrs": [
+			{
+				"covers": "VAN",
+				"hr": ["VAN"],
+				"nst": ["VAN"]
+			}
+		]
+	},
+	{
+		"team": ["Golden Knights"],
+		"full_name": ["Vegas Golden Knights"],
+		"master_abbr": "VGK",
+		"abbrs": [
+			{
+				"covers": "VEG",
+				"hr": ["VEG"],
+				"nst": ["VGK"]
+			}
+		]
+	},
+	{
+		"team": ["Capitals"],
+		"full_name": ["Washington Capitals"],
+		"master_abbr": "WSH",
+		"abbrs": [
+			{
+				"covers": "WAS",
+				"hr": ["WSH"],
+				"nst": ["WSH"]
+			}
+		]
+	},
+	{
+		"team": ["Jets"],
+		"full_name": ["Winnipeg Jets"],
+		"master_abbr": "WPG",
+		"abbrs": [
+			{
+				"covers": "WIN",
+				"hr": ["WPG"],
+				"nst": ["WPG"]
+			}
+		]
+	}
+]

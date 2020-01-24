@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import basketballref as br
+import dk
+import fivethirtyeight as fte
 import json
 import pymongo #pymongo-3.7.2
 import os
@@ -26,8 +28,18 @@ def load_team_misc():
 	df = br.build_df(table, 0, ['Team', 'Arena'], ['Rk', 'W', 'L', 'PW', 'PL'])
 	refresh_table('NBA_TEAM', 'br_team_misc', df)
 
+def load_dk_gamelines():
+	df = dk.get_dk_live()
+	refresh_table('NBA_GAMES', 'dk_gamelines', df)
+
+def load_538_gamelines():
+	df = fte.get_538_today()
+	refresh_table('NBA_GAMES', '538_gamelines', df)
+
 def main():
 	load_team_misc()
+	#load_dk_gamelines()
+	#load_538_gamelines()
 
 if __name__ == '__main__':
 	main()

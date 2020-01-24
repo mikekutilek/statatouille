@@ -18,6 +18,43 @@ def get_all_goalies_page(season='2019'):
 	r = requests.get(url)
 	return BeautifulSoup(r.content, "html.parser")
 
+def get_gamelogs_page(season='2020'):
+	url = "https://www.hockey-reference.com/leagues/NHL_{}_games.html".format(season)
+	r = requests.get(url)
+	html = r.text.replace('<!--', '').replace('-->', '')
+	return BeautifulSoup(html, "lxml")
+
+def get_table_by_id(page, table_id):
+	return page.find_all('table', id=table_id)
+
+def build_df(table):
+	thead = table[0].find('thead')
+	trs = thead.find_all('tr')[0]
+	ths = trs.find_all('th')
+	headings = []
+	for th in ths:
+		headings.append(th.text.strip('.'))
+	if headings[2] == 'G':
+		headings[2] = 'AWAY_G'
+	if headings[4] == 'G':
+		headings[4] = 'HOME_G'
+	tbody = table[0].find('tbody')
+	rows = tbody.find_all('tr')
+	data = []
+	for row in rows:
+		if row.get('class') == ['partial_table'] or row.get('class') == ['thead']:
+			continue
+		cells = row.find_all(['th', 'td'])
+		new_cells = []
+		for cell in cells:
+			if cell.text.strip() == 'St. Louis Blues':
+				new_cells.append(cell.text.strip().replace('.', ''))
+			else:
+				new_cells.append(cell.text.replace('%', '').strip())
+		data.append([cell for cell in new_cells])
+	df = pd.DataFrame(data=data, columns=headings)
+	return df
+
 def get_table(page):
 	table = page.find('table',{'class':'stats_table'})
 	thead = table.find('thead')
@@ -62,10 +99,3 @@ def get_table(page):
 			#print(heading)
 			df[heading] = df[heading].replace('', 0).astype('float64')
 	return df
-
-def main():
-	page = get_all_skaters_page()
-	print(get_table(page))
-
-if __name__ == '__main__':
-	main()

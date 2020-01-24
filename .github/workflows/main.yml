@@ -41,7 +41,7 @@ jobs:
     - name: Run NHL Daily
       run: |
         cd NHL
-        python refresh.py
+        python refresh.py --daily
 
   nba_refresh:
 
