@@ -59,7 +59,7 @@ def load_active_pitchers():
 def load_bref_team_sp():
 	url = "https://www.baseball-reference.com/leagues/MLB/{}-starter-pitching.shtml".format(CUR_SEASON)
 	page = bref.get_page(url)
-	df = bref.build_df(bref.get_table_by_class(page, 'stats_table'), 0, ['Tm'], ['']).sort_values(by=['RA/G'])
+	df = bref.build_df(bref.get_table_by_class(page, 'stats_table'), 0, ['Tm'], ['']).sort_values(by=['GmScA'], ascending=False)
 	refresh_table('MLB_TEAM', 'bref_team_sp', df)
 
 def load_batter_fp():
