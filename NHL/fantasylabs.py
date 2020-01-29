@@ -20,26 +20,56 @@ def get_table_by_id(page, table_id):
 def get_table_by_class(page, _class):
 	return page.find_all('table',{'class':_class})
 
-def get_gamelogs(date='2019-10-02'):
-	url = "https://www.covers.com/sports/NHL/matchups?selectedDate={}".format(date)
-	page = get_page(url)
-	games = page.find_all('div', {'class':'cmg_matchup_line_score'})
-	for game in games:
-		table = game.find_all('table')
-		thead = table[0].find('thead')
-		ths = thead.find_all('th')
-		headings = []
-		for th in ths:
-			headings.append(th.text.strip())
-		tbody = table[0].find('tbody')
-		rows = tbody.find_all('tr')
-		data = []
-		for row in rows:
-			cells = row.find_all(['th', 'td'])
-			cells = [cell.text.replace('*', '').replace('#', '').replace('%', '').strip() for cell in cells]
-			data.append([cell for cell in cells])
-		df = pd.DataFrame(data=data, columns=headings)
-		print(df)
+def get_gamelogs(date='2012_02_15'):
+	url = "https://www.fantasylabs.com/api/sportevents/4/{}".format(date)
+	resp = requests.get(url)
+	data = resp.json()
+	final_data = []
+	for d in data:
+		fantasylabs_id = d['EventId']
+		event_date = d['EventDate'].split('T')[0]
+		away_team = d['VisitorTeam']
+		home_team = d['HomeTeam']
+		away_total = d['VisitorScore']
+		home_total = d['HomeScore']
+		game_total = away_total + home_total
+		if away_total > home_total:
+			away_result = 'W'
+			home_result = 'L'
+		elif home_total > away_total:
+			away_result = 'L'
+			home_result = 'W'
+		else:
+			away_result = ''
+			home_result = ''
+		spread = d['Spread']
+		away_spread_odds = d['SpreadMoney1']
+		home_spread_odds = d['SpreadMoney2']
+		away_ml = d['MLVisitor']
+		home_ml = d['MLHome']
+		over_under = d['OU']
+		over_odds = d['OuMoney1']
+		under_odds = d['OuMoney2']
+		final_data.append({'DATE': event_date, 
+			'AWAY RESULT': away_result, 
+			'HOME RESULT': home_result, 
+			'AWAY TEAM': away_team, 
+			'HOME TEAM': home_team, 
+			'AWAY TOTAL': away_total, 
+			'HOME TOTAL': home_total, 
+			'GAME TOTAL': game_total, 
+			'SPREAD': spread, 
+			'AWAY SPREAD ODDS': away_spread_odds, 
+			'HOME SPREAD ODDS': home_spread_odds, 
+			'AWAY ML': away_ml, 
+			'HOME ML': home_ml, 
+			'OVER UNDER': over_under, 
+			'OVER ODDS': over_odds, 
+			'UNDER ODDS': under_odds})
+	return final_data
+	#df = pd.DataFrame(final_data)
+	#return df
+
 
 def get_streaks(team, date):
 	year = date.split('-')[0]
@@ -120,9 +150,8 @@ def get_fancystats(team, date, maxgames):
 	client = conn()
 	db = client['NHL_GAMES']
 	table = db['nst_gamelogs_5v5_'+season]
-	#this_games_data = table.find({ "$and": [{'Date': date, 'Team': team}]})
-	#result = this_games_data[0]['Result']
-	result = 'W'
+	this_games_data = table.find({ "$and": [{'Date': date, 'Team': team}]})
+	result = this_games_data[0]['Result']
 	season_avg_exp_gf_percentage = 0
 	recent_games_exp_gf_percentage = 0
 	past_games_data = table.find({ "$and": [{'Date': {"$lt": date}, 'Team': team}]})
@@ -239,8 +268,18 @@ def get_full_boxscore(date='2020-01-27'):
 	final_df = pd.DataFrame(final_data)
 	return final_df
 
-print(get_fancystats('Buffalo Sabres', '2020-01-28', 5))
+def get_season_gamelogs(season):
+	final_data = []
+
+	today_data = get_gamelogs(date)
+	for d in today_data:
+		final_data.append(d)
+
+	final_df = pd.DataFrame(final_data)
+	return final_df
+
 #var1, var2 = get_fancystats('Los Angeles Kings', '2019-12-21', 2)
 #print(type(var1))
 #print(type(var2))
 #print(get_fancystats('Florida Panthers', '2019-10-03', 1))
+print(get_full_boxscore())
