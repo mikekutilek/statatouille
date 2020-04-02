@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import hockeyref as hr
+from datetime import timedelta, date, datetime
 import pymongo #pymongo-3.7.2
 
 def conn():
@@ -19,6 +20,10 @@ def get_table_by_id(page, table_id):
 
 def get_table_by_class(page, _class):
 	return page.find_all('table',{'class':_class})
+
+def daterange(start_date, end_date):
+	for n in range(int ((end_date - start_date).days)):
+		yield start_date + timedelta(n)
 
 def get_gamelogs(date='2012_02_15'):
 	url = "https://www.fantasylabs.com/api/sportevents/4/{}".format(date)
@@ -269,11 +274,20 @@ def get_full_boxscore(date='2020-01-27'):
 	return final_df
 
 def get_season_gamelogs(season):
+	first_year = season[0:4]
+	second_year = season[4:8]
+	start_date = datetime.strptime((first_year + '_10_01'), "%Y_%m_%d")
+	end_date = datetime.strptime((second_year + '_07_01'), "%Y_%m_%d")
 	final_data = []
+	day_count = (end_date - start_date).days + 1
+	for single_date in daterange(start_date, end_date):
+		gamelogs = get_gamelogs(single_date.strftime("%Y_%m_%d"))
+		for game in gamelogs:
+			final_data.append(game)
 
-	today_data = get_gamelogs(date)
-	for d in today_data:
-		final_data.append(d)
+	#today_data = get_gamelogs(date)
+	#for d in today_data:
+	#	final_data.append(d)
 
 	final_df = pd.DataFrame(final_data)
 	return final_df
@@ -282,4 +296,5 @@ def get_season_gamelogs(season):
 #print(type(var1))
 #print(type(var2))
 #print(get_fancystats('Florida Panthers', '2019-10-03', 1))
-print(get_full_boxscore())
+
+print(get_fancystats('Toronto Maple Leafs', '2020-02-05', 5))

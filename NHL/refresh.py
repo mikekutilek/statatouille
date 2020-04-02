@@ -3,6 +3,7 @@ import pandas as pd
 import hockeyref as hr
 import fp
 import natstattrick as nst
+import fantasylabs as fl
 import sys, json, argparse
 from datetime import datetime
 import pymongo #pymongo-3.7.2
@@ -65,6 +66,10 @@ def load_nst_gamelogs(season, situation):
 	df = df.iloc[::-1]
 	refresh_table('NHL_GAMES', 'nst_gamelogs_'+situation+'_'+season, df)
 
+def load_fantasylabs_gamelogs(season):
+	df = fl.get_season_gamelogs(season)
+	refresh_table('NHL_GAMES', 'fantasylabs_'+season, df)
+
 def main(args):
 	if args.hist:
 		load_teams()
@@ -91,6 +96,7 @@ def main(args):
 		load_skater_fp()
 		load_goalie_basic()
 		load_goalie_fp()
+		load_fantasylabs_gamelogs('20192020')
 		load_nst_gamelogs('20192020', 'all')
 		load_nst_gamelogs('20192020', '5v5')
 

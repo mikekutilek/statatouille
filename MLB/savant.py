@@ -45,10 +45,13 @@ def get_search_page(hfGT='R', hfSea=CUR_SEASON, player_type='pitcher', batter_st
 	sort_col={}&
 	player_event_sort=h_launch_speed&
 	sort_order=desc&
-	min_pas=0#results
+	min_pas=0&
+	chk_stats_woba=on#results
 	'''.replace('\t', '').replace('\n', '').strip().format(hfGT, hfSea, player_type, batter_stands, position, hfInn, min_results, group_by, sort_col)
+	#print(url)
 	r = requests.get(url)
-	return BeautifulSoup(r.content, "html.parser")
+	html = r.text.replace('<!--', '').replace('-->', '')
+	return BeautifulSoup(html, "lxml")
 
 def get_search_result_table(page):
 	table = page.find('table',{'id':'search_results'})
@@ -57,16 +60,19 @@ def get_search_result_table(page):
 	headings = []
 	for th in ths:
 		headings.append(th.text.strip())
-	headings = headings[:-3]
+	headings = headings[:-1]
+	#print(headings)
 	headings.append("Player ID")
 	tbody = table.find('tbody')
 	rows = tbody.find_all('tr')
 	data = []
 	for row in rows[::2]:
+		#print(row)
 		player_id = row.attrs['id'][12:18]
 		cells = row.find_all('td')
+		#print(cells)
 		row_data = []
-		for cell in cells:
+		for cell in cells[:-1]:
 			row_data.append(cell.text.strip())
 		row_data.append(player_id)
 		data.append(row_data)
