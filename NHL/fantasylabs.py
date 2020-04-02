@@ -297,4 +297,4 @@ def get_season_gamelogs(season):
 #print(type(var2))
 #print(get_fancystats('Florida Panthers', '2019-10-03', 1))
 
-print(get_fancystats('Toronto Maple Leafs', '2020-02-05', 5))
+#print(get_fancystats('Toronto Maple Leafs', '2020-02-05', 5))
