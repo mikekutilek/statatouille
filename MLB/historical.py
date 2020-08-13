@@ -5,6 +5,9 @@ import bpro as bp
 import baseballref as bref
 import pymongo
 import re, json
+import requests
+from bs4 import BeautifulSoup
+#from requests_html import HTMLSession
 
 CUR_SEASON = '2019'
 FG_START_YEAR = 1903
@@ -44,6 +47,7 @@ def get_fg_team_stats(season, active_roster='0'):
 
 def get_bp_team_stats(season):
 	batter_page = bp.get_team_stats_page(cat='batting', season=season)
+	print(batter_page.text)
 	batter_table = bp.get_table_by_id(batter_page, 'TTdata')
 	batter_df = bp.build_df(batter_table, ['TEAM', 'LG', 'YEAR'], ['#'])
 	batter_df = batter_df.sort_values(by=['BWARP'], ascending=False).reset_index(drop=True)
@@ -152,3 +156,36 @@ def get_finished_df(season, source):
 			idx = df.index[champ_row].tolist()[0]
 			df.loc[idx, 'FINISH'] = 'CHAMPION'
 	return df
+
+#page = bp.get_team_stats_page(cat='batting', season='2019')
+"""
+url = '''https://legacy.baseballprospectus.com/sortable/index.php?
+	mystatslist=TEAM%2CLG%2CYEAR%2CG%2CPA%2CAB%2CR%2CH%2CHR%2CTB%2CBB%2CIBB%2CSO%2CBBR%2CSOR%2CHBP%2CSF%2CSH%2CRBI%2CSB%2CCS%2CSB_PERCENT%2CAVG%2COBP%2CSLG%2COPS%2CISO%2CDRC_RAA%2CDRC_PLUS%2CDRC_WARP&
+	category=team_batting&
+	tablename=dyna_team_batting&
+	stage=data&
+	year=2019&
+	group_TEAM=*&
+	group_LVL=MLB&
+	group_LG=*&
+	minimum=0&
+	sort1column=DRC_WARP&
+	sort1order=DESC&
+	sort2column=TEAM&
+	sort2order=ASC&
+	sort3column=TEAM&
+	sort3order=ASC&
+	page_limit=All&
+	glossary_terms=*&
+	view_data=View+Data'''.replace('\t', '').replace('\n', '').strip()
+r = requests.get('https://legacy.baseballprospectus.com/sortable/index.php?cid=3051941', headers={'Content-Type': 'text/html; charset=utf-8Content-Type: text/html; charset=utf-8'})
+#html = r.text
+print(r.content)
+html = r.text.replace('<!--', '').replace('-->', '')
+page = BeautifulSoup(html, "lxml")
+print(r.status_code)
+print(page)
+#session = HTMLSession()
+#r = session.get(url)
+#print(r.html)
+"""

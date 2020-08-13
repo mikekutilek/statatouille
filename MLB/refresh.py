@@ -113,7 +113,7 @@ def main(args):
 	if args.daily:
 		print("### RUNNING DAILY LOAD ###")
 		season_range = np.arange(int(CUR_SEASON), int(CUR_SEASON)+1)
-		load_team_historical('bp', season_range)
+		#load_team_historical('bp', season_range)
 		load_active_pitchers()
 		load_bref_team_sp()
 		load_batter_fp()
