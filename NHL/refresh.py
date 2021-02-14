@@ -96,9 +96,9 @@ def main(args):
 		load_skater_fp()
 		load_goalie_basic()
 		load_goalie_fp()
-		load_fantasylabs_gamelogs('20192020')
-		load_nst_gamelogs('20192020', 'all')
-		load_nst_gamelogs('20192020', '5v5')
+		load_fantasylabs_gamelogs('20202021')
+		load_nst_gamelogs('20202021', 'all')
+		load_nst_gamelogs('20202021', '5v5')
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='SABR Daily Data Refresh')
