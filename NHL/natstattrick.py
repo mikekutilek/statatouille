@@ -50,7 +50,7 @@ def build_df(table, strings, ints):
 				new_cells.append(cell.text.strip())
 		row_data = [cell for cell in new_cells]
 		game = cells[0].text.strip()
-		team = cells[1].text.strip().split(" ")[1:]
+		team = cells[1].text.strip()#.split(" ")[1:]
 		date = game.split(" - ")[0]
 		full_score = game.split(" - ")[1]
 		away_score = full_score.split(', ')[0]
@@ -59,7 +59,20 @@ def build_df(table, strings, ints):
 		away_goals = away_score.split(" ")[-1]
 		home_team = home_score.split(" ")[:-1]
 		home_goals = home_score.split(" ")[-1]
-		if team == away_team:
+		away_team_string = away_team[0]
+		for w in away_team[1:]:
+			away_team_string += " "
+			away_team_string += w
+		print(team)
+		print(away_team)
+		print(away_team_string)
+		"""
+		if winning_team_string in team:
+			result = 'W'
+		else:
+			result = 'L'
+		"""
+		if away_team_string in team:
 			if away_goals > home_goals:
 				result = 'W'
 			else:
@@ -69,6 +82,14 @@ def build_df(table, strings, ints):
 				result = 'W'
 			else:
 				result = 'L'
+		"""
+		gf = int(cells[13].text.strip())
+		ga = int(cells[14].text.strip())
+		if gf > ga:
+			result = 'W'
+		else:
+			result = 'L'
+		"""
 		row_data.append(result)
 		row_data.append(date)
 		data.append(row_data)
