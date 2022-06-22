@@ -1,5 +1,5 @@
 beautifulsoup4==4.6.0
-numpy==1.14.3
+numpy==1.22.0
 pandas==0.22.0
 requests==2.22.0
 lxml==4.3.3
